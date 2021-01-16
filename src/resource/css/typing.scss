@@ -1,0 +1,29 @@
+@keyframes blinker {
+    0%{border-right: 2px solid #fff} 
+    50%{border-right: 2px solid #000} 
+    100%{border-right: 2px solid #fff} 
+}
+  
+.typing{
+    width: 100%;
+    height: 100vh;
+   
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: height 0.7s linear;
+    // margin: 30% 0 30% 0;
+
+    line-height: 100px;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+  
+    &-line{
+      animation: blinker 1s linear infinite;
+    }
+    
+}

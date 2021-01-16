@@ -1,9 +1,18 @@
-@import "App.css";
-@import "layout.css";
+@import "./App.scss";
+@import "./layout.scss";
+@import "./typing.scss";
+
+* {
+  box-sizing: border-box;
+  // padding: 0;
+  // margin: 0;
+  overflow: hidden visible;
+}
 
 html, body {
-  margin: 0;
   height: 100vh;
+  overflow: hidden;
+
   /* overflow: hidden; */
   // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
   // "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -17,30 +26,52 @@ html, body {
 //     monospace;
 // } 
 
-.typing{
-  width: 100%;
-  height: 100%;
-  transition: height 0.7s linear;
 
-  display: block;
-  margin: 30% 0 30% 0;
-
-  line-height: 100px;
-  text-align: center;
-  font-size: xx-large;
-  font-weight: 700;
-  
+.App {
+  height: 100vh;
+  overflow: hidden;
+  /* text-align: center; */
 }
 
-.typing-line{
-  animation: blinker 1s linear infinite;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-@keyframes blinker {
-  0%{border-right: 2px solid #fff} 
-  50%{border-right: 2px solid #000} 
-  100%{border-right: 2px solid #fff} 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 10s linear;
+  }
 }
+
+.App-header {
+  /* background-color: #282c34; */
+  height: 90%;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* color: white; */
+}
+
+// .App-link {
+//   color: #61dafb;
+// }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
 
 
 

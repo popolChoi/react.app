@@ -44,7 +44,7 @@ import React, { Component } from "react";
 // 	return String.fromCharCode( 0xAC00 + 21*28*cho + 28*jung + jong );
 // }
 
-class App extends Component {
+class Typing extends Component {
     text = '안녕하세요.'
     state = {
         text:'',
@@ -91,11 +91,12 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
+                
                 <div className='typing' style={this.state.style}>
                     {this.state.style.height !== '0%'?
                         <div>
-                        {this.state.text}<font className='typing-line' />
-                    </div>
+                            {this.state.text}<font className='typing-line' />
+                        </div>
                     :[]}
                 </div>
             </React.Fragment>
@@ -103,4 +104,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Typing;

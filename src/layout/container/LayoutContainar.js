@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
 import { RiArrowLeftSLine } from "react-icons/ri";
-import { Input } from "semantic-ui-react";
+import { Divider } from "semantic-ui-react";
+
+import BarView from "../view/BarView";
+
+
 
 class LayoutContainar extends Component {
-
   width = '0%' //300px
   state = {
     layBarBut: {},
     layBar: { width: this.width },
-    
     layContainer: { width: `calc(100% - ${this.width})` },
   };
 
@@ -17,13 +18,13 @@ class LayoutContainar extends Component {
     const { layBar } = this.state;
     if (layBar.width === "0%") {
       this.setState({
-        layBarBut: {},
+        layBarBut: { transform: "rotate(180deg)" },
         layBar: { width: "300px" },
         layContainer: { width: "calc(100% - 300px)" },
       });
     } else {
       this.setState({
-        layBarBut: { transform: "rotate(180deg)" },
+        layBarBut: {},
         layBar: { width: "0%" },
         layContainer: { width: "100%" },
       });
@@ -31,31 +32,17 @@ class LayoutContainar extends Component {
   };
 
   render() {
-    const { cayoutContent } = this.props;
+    const { cayoutContent, contentLists } = this.props;
     const { layContainer, layBar, layBarBut } = this.state;
-    console.log('LayoutContainar');
     return (
       <Fragment>
         <div className="lay-main">
-          <div className="lay-bar" style={layBar}>
-            <Input
-              icon="search"
-              placeholder="Search..."
-              // value={this.state.value}
-              onChange={(e, v) => console.log(e, v.value)}
-            />
-            <ul>
-              <li></li>
-              <li></li>
-              <li>
-                <Link to="/react.app/Home">Home</Link>
-              </li>
-              <li>
-                <Link to="/react.app/test1">test1</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="lay-container" style={layContainer}>
+          <BarView 
+            layBar = {layBar}
+            contentLists = {contentLists}
+          />
+          
+          <div className="lay-container" style={layContainer} >
             <div className="lay-header">
               <button
                 className="ui icon right button huge lay-bar-but"
@@ -65,11 +52,21 @@ class LayoutContainar extends Component {
                 <RiArrowLeftSLine style={layBarBut} />
               </button>
             </div>
-            <div className="lay-content">
+
+            <div style={{
+               height: '100%',
+               width: '100%',
+               padding: '10px 10% 10px 10%'
+            }}>
+              <Divider horizontal >🔨개발중입니다🔨</Divider>
               {cayoutContent}
-              {/* <div className="lay-content-test">text</div> */}
+              <Divider horizontal >🔨쿵쾅쿵쾅🔨</Divider>
+
             </div>
+
+              {/* <div className="lay-content-test">text</div> */}
           </div>
+
         </div>
       </Fragment>
     );
