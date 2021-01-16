@@ -2,14 +2,25 @@ import React, { PureComponent } from "react";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
 import logo from "./resource/img/logo.svg";
+import { Layout } from "./layout";
+import Typing from "./Typing";
 
 class Routes extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <Redirect from="/" to="/" />
-        <Route exact path="/" component={Home}></Route>
-        <Route path="/test1" component={() => <IoMdPerson />}></Route>
+        {/* react.app */}
+        {/* <Redirect from="/react.app" to="/react.app" /> */}
+        <Route exact path="/react.app" component={Typing} />
+        <Layout
+            cayoutContent={
+              <header className="App-header">
+                <Route exact path="/react.app/Home" component={Home}></Route>
+                <Route path="/react.app/test1" component={() => '!!!'}></Route>
+              </header>
+            }
+          />
+       
       </React.Fragment>
     );
   }

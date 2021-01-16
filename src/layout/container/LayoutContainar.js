@@ -4,10 +4,13 @@ import { RiArrowLeftSLine } from "react-icons/ri";
 import { Input } from "semantic-ui-react";
 
 class LayoutContainar extends Component {
+
+  width = '0%' //300px
   state = {
     layBarBut: {},
-    layBar: { width: "300px" },
-    layContainer: { width: "calc(100% - 300px)" },
+    layBar: { width: this.width },
+    
+    layContainer: { width: `calc(100% - ${this.width})` },
   };
 
   onClick = () => {
@@ -30,6 +33,7 @@ class LayoutContainar extends Component {
   render() {
     const { cayoutContent } = this.props;
     const { layContainer, layBar, layBarBut } = this.state;
+    console.log('LayoutContainar');
     return (
       <Fragment>
         <div className="lay-main">
@@ -44,10 +48,10 @@ class LayoutContainar extends Component {
               <li></li>
               <li></li>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/react.app/Home">Home</Link>
               </li>
               <li>
-                <Link to="/test1">test1</Link>
+                <Link to="/react.app/test1">test1</Link>
               </li>
             </ul>
           </div>
