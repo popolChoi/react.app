@@ -1,15 +1,19 @@
-import React, { PureComponent } from 'react'
+
+
+import React, { Component, Fragment } from 'react'
 import { Button, Comment, Form, Header, TextArea } from 'semantic-ui-react'
 
-class Container extends PureComponent {
 
-    state = {
-        Comments : []
-    }
+
+export default class Container extends Component {
+
+  state = {
+    Comments : []
+  }
 
     render(){
         return (
-            <React.Fragment>
+            <Fragment>
                 
             <Comment.Group>
                 <Header as='h3' dividing>Comments</Header>
@@ -100,11 +104,10 @@ class Container extends PureComponent {
                 {/* </Form> */}
             </Comment.Group>
             
-            </React.Fragment>
+            </Fragment>
 
         )
     }
 
 }
 
-export default Container

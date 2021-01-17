@@ -7,20 +7,28 @@
 .typing{
     width: 100%;
     height: 100vh;
-   
+    transition: height 0.7s linear;
+    // font-size: medium;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    transition: height 0.7s linear;
-    // margin: 30% 0 30% 0;
+    // 
 
-    line-height: 100px;
-    text-align: center;
-    font-size: xx-large;
-    font-weight: 700;
+
+    .typing-tx {
+      // pre{
+      //   line-height: 5px;
+      // }
+      margin: 10px 0 10px 0;
+      line-height: 40px;
+      text-align: center;
+      font-size: xx-large;
+      font-weight: 700;
+
+    }
   
     &-line{
       animation: blinker 1s linear infinite;

@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
-import logo from "./resource/img/logo.svg";
-
+import logo from "resource/img/logo.svg";
 import { Layout } from "./layout";
 
-import Comments from "./works/comments";
-import Typing from "./Typing";
+import Comments from "works/comments";
+import Typing from "works/Typing";
 
 
 
@@ -14,6 +13,7 @@ import Typing from "./Typing";
 class Routes extends PureComponent {
   contentLists = [
     {path: "/Home", label: 'Home', component: Home  },
+    {path: "/typing", label: '타이핑스타일', component:(e)=><header className="App-header"><Typing {...e}/></header>  },
     {path: "/comments", label: 'comments', component: (e)=><header className="App-header"><Comments {...e}/></header>  },
     // 분리좀...
     ...new Array(100).fill(undefined).map((v,i) => (
@@ -28,18 +28,14 @@ class Routes extends PureComponent {
 
     return (
       <React.Fragment>
-        {/* react.app */}
         {/* <Redirect from="/react.app" to="/react.app" /> */}
-        <Route exact path="/react.app" component={Typing} />
+        <Route exact path="/react.app" component={(e)=><Typing {...e} hint={true}/>} />
         <Switch>
-          {/* <Route exact path="/react.app/*" component={() => '404'} /> */}
-
           <Layout
             contentLists = {this.contentLists}
             cayoutContent={
               <React.Fragment >
                 <Route exact path="/react.app" component={Home}></Route>
-                {/* <Route exact path="/react.app/Home" component={Home}></Route> */}
                 {this.contentLists.map((c, i)=><Route exact key={i} path={`/react.app${c.path}`} component={c.component} />)}
 
               </React.Fragment >

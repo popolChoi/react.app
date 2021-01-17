@@ -4,9 +4,9 @@
 
 * {
   box-sizing: border-box;
-  // padding: 0;
-  // margin: 0;
-  overflow: hidden visible;
+  padding: 0;
+  margin: 0;
+  // overflow: hidden visible;
 }
 
 html, body {
@@ -67,6 +67,14 @@ html, body {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+.icon:hover{
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
 }
 
 

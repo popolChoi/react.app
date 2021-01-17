@@ -61,7 +61,6 @@ class LayoutContainar extends Component {
               <Divider horizontal >🔨개발중입니다🔨</Divider>
               {cayoutContent}
               <Divider horizontal >🔨쿵쾅쿵쾅🔨</Divider>
-
             </div>
 
               {/* <div className="lay-content-test">text</div> */}
@@ -73,3 +72,5 @@ class LayoutContainar extends Component {
   }
 }
 export default LayoutContainar;
+
+
