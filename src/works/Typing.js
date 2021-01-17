@@ -30,7 +30,6 @@ class Typing extends Component {
 
     set(key, v){ this.setState({[key]: v}) }
 
-
     onTimeout(){
         const {hint} = this.props;
         const {typingSpeed} = this.state;
@@ -47,7 +46,7 @@ class Typing extends Component {
     }
 
     onTyping2(){
-        /* 유니코드 분리, 합성 효과 */
+        /* 유니코드 분리, 합성 효과적용 */
         const {hint} = this.props;
         const {typingSpeed} = this.state;
         const arr = this.text.split('\n').map(
@@ -55,7 +54,7 @@ class Typing extends Component {
                 v2=>Utile.getConstantVowel(v2)
             )
         );
-        const arr2 = this.text.split('').map((v)=>Utile.getConstantVowel(v))
+        // const arr2 = this.text.split('').map((v)=>Utile.getConstantVowel(v))
 
         const set = (v, time)=> {
             setTimeout(()=>{
@@ -79,34 +78,23 @@ class Typing extends Component {
         let txt = '';
         let time = 1;
 
+        //줄바꿈
         arr.forEach((txtList, ind)=>{
             txtList.forEach((v, i)=>{
                 let ix = 0
                 v.forEach((v2, j)=>{
-                    if(v[j] !== this.text[i]){
-                        // console.log(txt+v[j]);
-                        set(txt+v[j],time)
-                        time += 1 
-                    }else{
-                        ix = j
-                    }
+                    set(txt+v[j],time)
+                    time += 1 
+                    ix = j
                 })
                 txt += v[ix]
-                // console.log(txt);
-
-                set(txt, time)
                 time += 1 
             })
             if(ind !== arr.length-1 ){
                 txt+='\n'
             }
-            
-            set(txt, time)
             time += 1 
-
         });
-        // console.log(this.text,txt)
-
         // arr2.forEach((v, i)=>{
         //     let ix = 0
         //     v.forEach((v2, j)=>{
@@ -165,10 +153,10 @@ class Typing extends Component {
                 >
                     {style.height !== '0%'?
                     <React.Fragment>
-                        <div className='typing-tx'><pre>{text2}<font className='typing-line' /></pre></div>
+                        <div className='typing-tx'>{text2}<font className='typing-line' /></div>
                     {!hint?
                         <React.Fragment>
-                            <div className='typing-tx'><pre>{text}<font className='typing-line' /></pre></div>
+                            <div className='typing-tx'>{text}<font className='typing-line' /></div>
                             <br />
                             <div>
                                 <TextArea 
@@ -180,14 +168,14 @@ class Typing extends Component {
                                 <br />
                                 <br />
                                 <div style={{ fontSize: 'medium' }} >
-                                속도 <Select
+                                속도 
+                                <Select
                                     value={typingSpeed}
                                     disabled={disabled} 
                                     onChange={this.onSelectChange.bind(this)}
                                     options={ [...[...new Array(10)].map((v, i)=>({key: i, value: 25*(i+1), text: `${25*(i+1)}`}))]} 
                                     style={{ marginRight: '10px' }}
                                 />
-
                                 <Button 
                                     primary 
                                     onClick={this.onClick.bind(this)} 

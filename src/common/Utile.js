@@ -24,15 +24,15 @@ export default class Utile {
 
     
         let set = [kor];
-        if(!f[fn] && !s[sn] && !t[tn]){
-            return set
-        }else {
+        if(!(!f[fn] && !s[sn] && !t[tn])){
             set = [f[fn], kor]
             if(t[tn]){
                 set = [f[fn],this.cjj2han(fn,sn), kor, ]
             }
-            return set;
+            
         }
+
+        return set;
     }
 
     //유니코드 합성

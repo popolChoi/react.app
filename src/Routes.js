@@ -12,10 +12,11 @@ import Typing from "works/Typing";
 
 class Routes extends PureComponent {
   contentLists = [
-    {path: "/Home", label: 'Home', component: Home  },
-    {path: "/typing", label: '타이핑스타일', component:(e)=><header className="App-header"><Typing {...e}/></header>  },
-    {path: "/comments", label: 'comments', component: (e)=><header className="App-header"><Comments {...e}/></header>  },
     // 분리좀...
+
+    {path: "/Home", label: 'Home', component: Home  },
+    {path: "/typing", label: '/Typing.js', component:(e)=><header className="App-header"><Typing {...e}/></header>  },
+    {path: "/comments", label: '/comments/', component: (e)=><header className="App-header"><Comments {...e}/></header>  },
     ...new Array(100).fill(undefined).map((v,i) => (
       {path: `/test${i+1}`, label: `test${i+1}`, component: ()=> <header className="App-header">{`test${i+1}`}</header> }
     ))
