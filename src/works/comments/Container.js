@@ -34,23 +34,7 @@ export default class Container extends Component {
         { img:justen, value: 'justen', text: this.lovStyle(justen,'justen')},
         { img:steve, value: 'steve', text: this.lovStyle(steve,'steve')},
     ]
-    lovStyle(src, id){
-        return( 
-        <Fragment>
-            <Image 
-            src={src}  
-            spaced='right' 
-            size='mini'
-            style={{
-                borderRadius: '.25rem',
-                // maxHeight: '2em',
-                width: 'auto'
-            }}
-             />
-            <b>@{id}</b> 
-        </Fragment>)
-
-    }
+   
     state = {
         reply: { 
             i:0,
@@ -92,48 +76,61 @@ export default class Container extends Component {
             },
         ]
     }
+    lovStyle(src, id){
+        return( 
+        <Fragment>
+            <Image 
+            src={src}  
+            spaced='right' 
+            size='mini'
+            style={{
+                borderRadius: '.25rem',
+                // maxHeight: '2em',
+                width: 'auto'
+            }}
+             />
+            <b>@{id}</b> 
+        </Fragment>)
 
-  onCommentSet(vList){
-    const {reply, comments} = this.state
-    const img = this.selectLov.find((v)=> v.value === vList.selectvalue).img
-    if(reply){
-        this.state.comments[reply.i].reply.push(
-            {
-                img: img,
-                id: vList.selectvalue,
-                time: moment(),
-                text: vList.textAreaValue,
-            }
-        )
-        this.setState({ 
-            reply: null,
-            comments : this.state.comments,
-         })
-    }else {
-        this.state.comments.push(
-            {
-                img: img,
-                id: vList.selectvalue,
-                time: moment(),
-                text: vList.textAreaValue,
-                reply:[]
-            }
-        )
-        this.setState({ 
-            reply: null,
-            comments : this.state.comments,
-         })
     }
-     
-  }
 
-  onReply(reply){
-    this.setState({reply})
-  }
+    onCommentSet(vList){
+        const {reply, comments} = this.state
+        const img = this.selectLov.find((v)=> v.value === vList.selectvalue).img
+        if(reply){
+            this.state.comments[reply.i].reply.push(
+                {
+                    img: img,
+                    id: vList.selectvalue,
+                    time: moment(),
+                    text: vList.textAreaValue,
+                }
+            )
+            this.setState({ 
+                reply: null,
+                comments : this.state.comments,
+            })
+        }else {
+            this.state.comments.push(
+                {
+                    img: img,
+                    id: vList.selectvalue,
+                    time: moment(),
+                    text: vList.textAreaValue,
+                    reply:[]
+                }
+            )
+            this.setState({ 
+                reply: null,
+                comments : this.state.comments,
+            })
+        }
+        
+    }
 
-  onAccordion(){
-
-  }
+    onReply(reply){
+        this.setState({reply})
+    }
 
     render(){
         const {comments, reply} = this.state
