@@ -34,6 +34,7 @@ class LayoutContainar extends Component {
   render() {
     const { cayoutContent, contentLists } = this.props;
     const { layContainer, layBar, layBarBut } = this.state;
+    console.log( this.props.location);
     return (
       <Fragment>
         {/* <Dimmer inverted><Loader active/></Dimmer> */}
@@ -61,7 +62,7 @@ class LayoutContainar extends Component {
                width: '100%',
                padding: '10px 10% 10px 10%'
             }}>
-              <Divider horizontal >🔨<a href={window.origin+"/react.app?index=y"}>react.app</a></Divider>
+              <Divider horizontal >🔨<a href={window.origin+"#/react.app/Home"}>react.app</a></Divider>
               {cayoutContent}
               <Divider horizontal >🔨</Divider>
             </div>

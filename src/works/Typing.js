@@ -27,17 +27,15 @@ class Typing extends Component {
 
     componentDidMount(){
 
-        const {location} = this.props;
+        // const {location} = this.props;
+        // const {pathname = '', search = ''} = location
+        // if(pathname === '/react.app' && search === '?index=y'){
+        //     this.props.history.push('/Home')
+        // }else{
+            
 
-        const {pathname = '', search = ''} = location
-
-        if(pathname === '/react.app' && search === '?index=y'){
-            this.props.history.push('/react.app/#/Home')
-        }else{
-            this.onTimeout();
-
-        }
-
+        // }
+        this.onTimeout();
     }
 
     set(key, v){ this.setState({[key]: v}) }
@@ -75,7 +73,7 @@ class Typing extends Component {
                                     height: '0%',
                                     margin: '0%'
                                 }
-                            },()=>{setTimeout(()=>{this.props.history.push('/react.app/#/Home')} , 700)})
+                            },()=>{setTimeout(()=>{this.props.history.push('/Home')} , 700)})
                         }, 2000)
                     }
                    

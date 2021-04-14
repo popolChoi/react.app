@@ -9,12 +9,12 @@ class Routes extends PureComponent {
   contentLists = [
     // 분리좀...
 
-    {path: "/#/Home", label: 'Home', component: Home  },
+    {path: "/Home", label: 'Home', component: Home  },
 
-    {path: "/#/coinmarket", label: '', component: (e)=><CoinMarket {...e}/>  },
+    // {path: "/#/coinmarket", label: '', component: (e)=><CoinMarket {...e}/>  },
 
-    {path: "/#/typing", label: '타이핑 테스트', component:(e)=><Typing {...e}/>  },
-    {path: "/#/comments", label: '댓글창 폼', component: (e)=><Comments {...e}/> },
+    {path: "/typing", label: '타이핑 테스트', component:(e)=> <header className="App-header"><Typing {...e}/></header>  },
+    {path: "/comments", label: '댓글창 폼', component: (e)=> <header className="App-header"><Comments {...e}/></header>  },
     // {path: "/coinmarket", label: '가상화페시세', component: (e)=><header className="App-header"><CoinMarket {...e}/></header>  },
 
     // ...new Array(100).fill(undefined).map((v,i) => (
@@ -23,25 +23,26 @@ class Routes extends PureComponent {
   ]
   render() {
 
+    
+
     return (
       <React.Fragment>
         {/* <Redirect from="/react.app" to="/react.app" /> */}
-        <Route exact path="/react.app" component={(e)=><Typing {...e} hint={true}/>} />
+        <Route exact path="/" component={(e)=><Typing {...e} hint={true}/>} />
+
         <Switch>
           <Layout
             contentLists = {this.contentLists}
             cayoutContent={
               <React.Fragment >
-                <Route exact path="/react.app" component={Home}></Route>
-                <header className="App-header">
-                {this.contentLists.map((c, i)=><Route exact key={i} path={`/react.app${c.path}`} component={c.component} />)}
-
-                </header>
+                {/* <Route exact path="/react.app" component={Home}></Route> */}
+                {this.contentLists.map((c, i)=><Route exact key={i} path={`${c.path}`} component={c.component} />)}
+                <Route path="/:name" component={error404} />
 
               </React.Fragment >
             }
           />
-            
+
           </Switch>
 
       </React.Fragment>
@@ -50,10 +51,12 @@ class Routes extends PureComponent {
 }
 export default Routes;
 
-function Home() {
+function Home(a) {
+  console.log(a);
   return (
     <React.Fragment >
-      {/* <img src={logo} className="App-logo" alt="logo" /> */}
+       <header className="App-header"><img src={logo} className="App-logo" alt="logo" /></header>
+      
 
       {/* <p> Edit <code>src/App.js</code> and save to reload.</p> */}
       {/* <a
@@ -64,6 +67,14 @@ function Home() {
       >
         Learn React
       </a> */}
+    </React.Fragment>
+  );
+}
+
+function error404(){
+  return (
+    <React.Fragment >
+       <header className="App-header">404</header>
     </React.Fragment>
   );
 }
