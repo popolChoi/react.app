@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { RiArrowLeftSLine } from "react-icons/ri";
-import { Divider } from "semantic-ui-react";
+import { Divider, Loader, Segment, Dimmer } from "semantic-ui-react";
 
 import BarView from "../view/BarView";
 
@@ -36,6 +36,9 @@ class LayoutContainar extends Component {
     const { layContainer, layBar, layBarBut } = this.state;
     return (
       <Fragment>
+        {/* <Dimmer inverted><Loader active/></Dimmer> */}
+
+
         <div className="lay-main">
           <BarView 
             layBar = {layBar}

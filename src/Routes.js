@@ -3,27 +3,20 @@ import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import logo from "resource/img/logo.svg";
 import { Layout } from "./layout";
 
-import Comments from "works/comments";
-import Typing from "works/Typing";
-
-
-
-
+import { Comments,Typing, CoinMarket } from "works";
 
 class Routes extends PureComponent {
   contentLists = [
     // 분리좀...
 
     {path: "/Home", label: 'Home', component: Home  },
-    {path: "/typing", label: '/Typing.js', component:(e)=><header className="App-header"><Typing {...e}/></header>  },
-    {path: "/comments", label: '/comments/', component: (e)=><header className="App-header"><Comments {...e}/></header>  },
-    ...new Array(100).fill(undefined).map((v,i) => (
-      {path: `/test${i+1}`, label: `test${i+1}`, component: ()=> <header className="App-header">{`test${i+1}`}</header> }
-    ))
-    // {path: "/test1", label: 'test1', component: ()=> <header className="App-header">'test1'</header> },
-    // {path: "/test2", label: 'test2', component: ()=> <header className="App-header">'test2'</header> },
-    // {path: "/test3", label: 'test3', component: ()=> <header className="App-header">'test3'</header> }
-  
+    {path: "/typing", label: '타이핑 테스트', component:(e)=><header className="App-header"><Typing {...e}/></header>  },
+    {path: "/comments", label: '댓글창 폼', component: (e)=><header className="App-header"><Comments {...e}/></header>  },
+    // {path: "/coinmarket", label: '가상화페시세', component: (e)=><header className="App-header"><CoinMarket {...e}/></header>  },
+
+    // ...new Array(100).fill(undefined).map((v,i) => (
+    //   {path: `/test${i+1}`, label: `test${i+1}`, component: ()=> <header className="App-header">{`test${i+1}`}</header> }
+    // ))
   ]
   render() {
 

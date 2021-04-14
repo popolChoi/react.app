@@ -49,12 +49,7 @@ class Typing extends Component {
         /* 유니코드 분리, 합성 효과적용 */
         const {hint} = this.props;
         const {typingSpeed} = this.state;
-        const arr = this.text.split('\n').map(
-            v=>v.split('').map(
-                v2=>Utile.getConstantVowel(v2)
-            )
-        );
-        // const arr2 = this.text.split('').map((v)=>Utile.getConstantVowel(v))
+        const arr = Utile.textDissect(this.text)
 
         const set = (v, time)=> {
             setTimeout(()=>{

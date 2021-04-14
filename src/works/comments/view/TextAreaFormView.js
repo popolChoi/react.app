@@ -1,16 +1,65 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Comment, Form, Header, Select, Image, Icon } from 'semantic-ui-react'
+import { Button, Comment, Form, Header, Select, Image, Icon, Loader, Dimmer } from 'semantic-ui-react'
+
+
+import Utile from 'common/Utile'
 
 
 //https://emoji-api.com/emojis?access_key=35d45f7ca397da901224bc22167568b166a27f85
 
 export default class TextAreaFormView extends Component {
 
+  
 
     state ={
         selectvalue: 'stevie',
         textAreaValue: '',
     }
+
+
+    componentDidMount(){
+        const str = 'Hello, world!'
+
+        let txt = '';
+        let time = 1;
+        const arr = Utile.textDissect(str)
+        const set = (v, t)=> {
+          setTimeout(()=>{ this.setState({textAreaValue: v })}, 70*t)
+          if( v === str){
+
+            // Utile.loader()
+
+          }
+        }
+
+        
+        //줄바꿈
+        arr.forEach((txtList, ind)=>{
+          txtList.forEach((v, i)=>{
+              let ix = 0
+              v.forEach((v2, j)=>{
+                  set(txt+v[j],time)
+
+                  time += 1 
+                  ix = j
+              })
+              txt += v[ix]
+              time += 1 
+          })
+          if(ind !== arr.length-1 ){
+              txt+='\n'
+          }
+          time += 1 
+        });
+
+
+
+
+     
+    
+    }
+
+
     onChange(n,e,v){
         this.setState({[n]: v.value})
     }
@@ -39,7 +88,6 @@ export default class TextAreaFormView extends Component {
 
         return(   
             <Form reply>
-                
                 <div style={{marginBottom: '5px', float: 'left'}}>
                     <Select
                         value={selectvalue}

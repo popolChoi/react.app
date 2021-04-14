@@ -76,6 +76,26 @@ export default class Container extends Component {
             },
         ]
     }
+
+    constructor(props){
+      super(props);
+      
+
+    }
+
+    componentDidMount(){
+
+      console.log(this);
+
+      // this.onCommentSet({
+      //   selectvalue: "stevie",
+      //   textAreaValue: "ㅈㅂㄷㅈㅂㄷ"
+      // })
+
+
+
+    }
+
     lovStyle(src, id){
         return( 
         <Fragment>
@@ -95,6 +115,7 @@ export default class Container extends Component {
     }
 
     onCommentSet(vList){
+      console.log(vList);
         const {reply, comments} = this.state
         const img = this.selectLov.find((v)=> v.value === vList.selectvalue).img
         if(reply){
@@ -149,6 +170,7 @@ export default class Container extends Component {
                                 <CommentView 
                                     v={v} 
                                     i={i}
+                                    key={i}
                                     onReply={this.onReply.bind(this, {i, ...v })}
                                 />
                         )}

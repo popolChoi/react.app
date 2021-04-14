@@ -1,4 +1,22 @@
-export default class Utile {
+import { Component } from 'react'
+import { Segment, Loader } from 'semantic-ui-react'
+
+export default class Utile extends Component  {
+
+  static loader = () => (
+    <Segment>
+      <Loader active />
+    </Segment>
+  )
+
+    //텍스트 분해
+    static textDissect(text){
+        return text.split('\n').map(
+          v=>v.split('').map(
+              v2=>this.getConstantVowel(v2)
+          )
+        );
+    }
 
     //유니코드 분리
     static getConstantVowel(kor) {
