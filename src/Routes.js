@@ -9,9 +9,12 @@ class Routes extends PureComponent {
   contentLists = [
     // 분리좀...
 
-    {path: "/Home", label: 'Home', component: Home  },
-    {path: "/typing", label: '타이핑 테스트', component:(e)=><header className="App-header"><Typing {...e}/></header>  },
-    {path: "/comments", label: '댓글창 폼', component: (e)=><header className="App-header"><Comments {...e}/></header>  },
+    {path: "/#/Home", label: 'Home', component: Home  },
+
+    {path: "/#/coinmarket", label: '', component: (e)=><CoinMarket {...e}/>  },
+
+    {path: "/#/typing", label: '타이핑 테스트', component:(e)=><Typing {...e}/>  },
+    {path: "/#/comments", label: '댓글창 폼', component: (e)=><Comments {...e}/> },
     // {path: "/coinmarket", label: '가상화페시세', component: (e)=><header className="App-header"><CoinMarket {...e}/></header>  },
 
     // ...new Array(100).fill(undefined).map((v,i) => (
@@ -30,7 +33,10 @@ class Routes extends PureComponent {
             cayoutContent={
               <React.Fragment >
                 <Route exact path="/react.app" component={Home}></Route>
+                <header className="App-header">
                 {this.contentLists.map((c, i)=><Route exact key={i} path={`/react.app${c.path}`} component={c.component} />)}
+
+                </header>
 
               </React.Fragment >
             }
@@ -47,9 +53,7 @@ export default Routes;
 function Home() {
   return (
     <React.Fragment >
-      <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      {/* <img src={logo} className="App-logo" alt="logo" /> */}
 
       {/* <p> Edit <code>src/App.js</code> and save to reload.</p> */}
       {/* <a

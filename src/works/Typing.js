@@ -9,6 +9,7 @@ class Typing extends Component {
         super(props);
         const {hint} = this.props;
 
+     
         this.text = hint?'안녕하세요.' :  `한글타이핑 효과 테스트입니다.`
 
         this.state = {
@@ -25,7 +26,18 @@ class Typing extends Component {
     
 
     componentDidMount(){
-        this.onTimeout();
+
+        const {location} = this.props;
+
+        const {pathname = '', search = ''} = location
+
+        if(pathname === '/react.app' && search === '?index=y'){
+            this.props.history.push('/react.app/#/Home')
+        }else{
+            this.onTimeout();
+
+        }
+
     }
 
     set(key, v){ this.setState({[key]: v}) }
@@ -63,7 +75,7 @@ class Typing extends Component {
                                     height: '0%',
                                     margin: '0%'
                                 }
-                            },()=>{setTimeout(()=>{this.props.history.push('/react.app/Home')} , 700)})
+                            },()=>{setTimeout(()=>{this.props.history.push('/react.app/#/Home')} , 700)})
                         }, 2000)
                     }
                    

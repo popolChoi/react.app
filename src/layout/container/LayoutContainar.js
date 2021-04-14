@@ -61,9 +61,9 @@ class LayoutContainar extends Component {
                width: '100%',
                padding: '10px 10% 10px 10%'
             }}>
-              <Divider horizontal >🔨개발중입니다🔨</Divider>
+              <Divider horizontal >🔨<a href={window.origin+"/react.app?index=y"}>react.app</a></Divider>
               {cayoutContent}
-              <Divider horizontal >🔨쿵쾅쿵쾅🔨</Divider>
+              <Divider horizontal >🔨</Divider>
             </div>
 
               {/* <div className="lay-content-test">text</div> */}
