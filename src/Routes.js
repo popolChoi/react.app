@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import logo from "resource/img/logo.svg";
 import { Layout } from "./layout";
 
-import { Comments,Typing, CoinMarket } from "works";
+import { Comments,Typing, MyDocument } from "works";
 
 class Routes extends PureComponent {
   contentLists = [
@@ -11,7 +11,7 @@ class Routes extends PureComponent {
 
     {path: "/Home", label: 'Home', component: Home  },
 
-    // {path: "/#/coinmarket", label: '', component: (e)=><CoinMarket {...e}/>  },
+    {path: "/myDocument", label: 'myDocument', component: (e)=><header className="App-header"><MyDocument {...e}/></header>  },
 
     {path: "/typing", label: '타이핑 테스트', component:(e)=> <header className="App-header"><Typing {...e}/></header>  },
     {path: "/comments", label: '댓글창 폼', component: (e)=> <header className="App-header"><Comments {...e}/></header>  },
