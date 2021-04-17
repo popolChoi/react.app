@@ -1,3 +1,3 @@
-import Layout from "./container/LayoutContainar";
+import Layout from './container/LayoutContainar';
 
 export { Layout };
