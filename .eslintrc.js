@@ -34,5 +34,9 @@ module.exports = {
     'react/jsx-fragments': 'off',
     'react/button-has-type': 'off',
     'react/state-in-constructor': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/prop-types': 'off',
+    'no-underscore-dangle': 'off',
+
   },
 };

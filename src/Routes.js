@@ -12,9 +12,9 @@ class Routes extends PureComponent {
 
     { path: '/Home', label: 'Home', component: Home },
 
-    { path: '/myDocument', label: 'myDocument', component: (e) => <header className="App-header"><MyDocument {...e} /></header> },
-    { path: '/typing', label: '타이핑 테스트', component: (e) => <header className="App-header"><Typing {...e} /></header> },
-    { path: '/comments', label: '댓글창 폼', component: (e) => <header className="App-header"><Comments {...e} /></header> },
+    { path: '/myDocument', label: 'myDocument', component: (e) => <header className="App-header fadein"><MyDocument {...e} /></header> },
+    { path: '/typing', label: '타이핑 테스트', component: (e) => <header className="App-header fadein"><Typing {...e} /></header> },
+    { path: '/comments', label: '댓글창 폼', component: (e) => <header className="App-header fadein"><Comments {...e} /></header> },
     // {path: "/coinmarket", label: '가상화페시세', component: (e)=><header className="App-header"><CoinMarket {...e}/></header>  },
 
     // ...new Array(100).fill(undefined).map((v,i) => (
@@ -53,7 +53,7 @@ function Home(a) {
   console.log(a);
   return (
     <>
-      <header className="App-header"><img src={logo} className="App-logo" alt="logo" /></header>
+      <header className="App-header fadein"><img src={logo} className="App-logo" alt="logo" /></header>
 
       {/* <p> Edit <code>src/App.js</code> and save to reload.</p> */}
       {/* <a
@@ -68,11 +68,14 @@ function Home(a) {
   );
 }
 
-function error404(d, l) {
-  console.log(d.location);
-  return (
-    <>
-      <header className="App-header">404</header>
-    </>
-  );
+function error404({ location = {} }, l) {
+  const error = l.find((e) => e.path === location.pathname);
+  if (!error) {
+    return (
+      <>
+        {location.pathname !== '/' ? <header className="App-header">404</header> : Home}
+      </>
+    );
+  }
+  return null;
 }

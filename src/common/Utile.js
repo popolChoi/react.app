@@ -1,13 +1,6 @@
 import { Component } from 'react';
-import { Segment, Loader } from 'semantic-ui-react';
 
 export default class Utile extends Component {
-  static loader = () => (
-    <Segment>
-      <Loader active />
-    </Segment>
-  )
-
   // 텍스트 분해
   static textDissect(text) {
     return text.split('\n').map(
@@ -53,5 +46,16 @@ export default class Utile extends Component {
   // 유니코드 합성
   static cjj2han(cho = 0, jung = 0, jong = 0) {
     return String.fromCharCode(0xAC00 + 21 * 28 * cho + 28 * jung + jong);
+  }
+
+  static makeid(no) {
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < no; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
   }
 }

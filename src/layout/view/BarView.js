@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from 'semantic-ui-react';
+import Typography from 'common/typography';
 
 class BarView extends Component {
   onClick(e) {
@@ -36,7 +37,17 @@ class BarView extends Component {
                 <br />
                 <br /> */}
             <ul ref={(e) => this.ref = e}>
-              { contentLists.map((v, i) => <Link key={i} to={`${v.path}`}><li onClick={this.onClick.bind(this)}>{v.label}</li></Link>)}
+              { contentLists.map((v, i) => (
+                <Link key={i} to={`${v.path}`}>
+                  <li onClick={this.onClick.bind(this)}>
+                    <Typography
+                      random
+                      text={v.label}
+                      line={false}
+                    />
+                  </li>
+                </Link>
+              ))}
             </ul>
           </div>
         </div>

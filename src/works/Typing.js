@@ -10,7 +10,7 @@ class Typing extends Component {
     super(props);
     const { hint } = this.props;
 
-    this.text = hint ? '안녕하세요.' : '한글타이핑 효과 테스트입니다.';
+    this.text = hint ? '> Hello, world!' : '한글타이핑 효과 테스트입니다.';
 
     this.state = {
       text: '',
@@ -162,33 +162,33 @@ class Typing extends Component {
                       <div className="typing-tx">{text}<font className="typing-line" /></div>
                       <br />
                       <div>
-                            <TextArea
-                                value={textAreaValue}
-                                onChange={this.onChange.bind(this)}
-                                disabled={disabled}
-                              />
-                            <br />
-                            <br />
-                            <div style={{ fontSize: 'medium' }}>
-                                속도 
-                                <Select
-                                  value={typingSpeed}
-                                  disabled={disabled}
-                                  onChange={this.onSelectChange.bind(this)}
-                                  options={[...[...new Array(10)].map((v, i) => ({ key: i, value: 25 * (i + 1), text: `${25 * (i + 1)}` }))]}
-                                  style={{ marginRight: '10px' }}
-                                />
-                                <Button
-              primary
-              onClick={this.onClick.bind(this)}
-              disabled={disabled}
-              loading={disabled}
-            >GO
-            </Button>
+                        <TextArea
+                          value={textAreaValue}
+                          onChange={this.onChange.bind(this)}
+                          disabled={disabled}
+                        />
+                        <br />
+                        <br />
+                        <div style={{ fontSize: 'medium' }}>
+                          속도
+                          <Select
+                            value={typingSpeed}
+                            disabled={disabled}
+                            onChange={this.onSelectChange.bind(this)}
+                            options={[...[...new Array(10)].map((v, i) => ({ key: i, value: 25 * (i + 1), text: `${25 * (i + 1)}` }))]}
+                            style={{ marginRight: '10px' }}
+                          />
+                          <Button
+                            primary
+                            onClick={this.onClick.bind(this)}
+                            disabled={disabled}
+                            loading={disabled}
+                          >GO
+                          </Button>
 
-                              </div>
+                        </div>
 
-                          </div>
+                      </div>
                       <br />
                       <Icon disabled name="github" />
 
