@@ -14,15 +14,6 @@ export default class Container extends PureComponent {
   }
 
   componentDidMount() {
-    const { random } = this.props;
-    if (random) {
-      const node = this.refText.current.parentNode;
-      node.addEventListener('mouseover', (e) => this.onMouseover(e));
-      node.addEventListener('mouseout', (e) => {
-        this.setState({ text: this._text }, () => clearInterval(this.timeout));
-      });
-    }
-
     this.onTimeout();
   }
 
@@ -54,13 +45,21 @@ export default class Container extends PureComponent {
     this.setState((prevState) => ({ text: prevState.text + set }));
     if (this._text === this.state.text) {
       clearInterval(this.timeout);
+
+      const { random } = this.props;
+      if (random) {
+        const node = this.refText.current.parentNode;
+        node.addEventListener('mouseover', (e) => this.onMouseover(e));
+        node.addEventListener('mouseout', (e) => {  this.setState({ text: this.props.text }, () => clearInterval(this.timeout));});
+      }
+  
     }
   }
 
   onMouseover() {
     const { typingSpeed } = this.state;
     setTimeout(() => {
-      this.setState({ text: this._text }, () => clearInterval(this.timeout));
+      this.setState({ text: this.props.text }, () => clearInterval(this.timeout));
     }, 200);
 
     this.timeout = setInterval(

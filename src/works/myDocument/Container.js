@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment} from 'react';
 import {
   Header,
   Table,
@@ -12,11 +12,17 @@ import {
   Segment,
   Button,
   Divider,
+  Ref
 } from 'semantic-ui-react';
 
 import Typography from 'common/typography';
 
 export default class Container extends Component {
+  mainFef = React.createRef();
+  // introduceFef = React.createRef();
+
+  
+
   workExperience = [
     {
       Header: '다우기술',
@@ -79,10 +85,58 @@ export default class Container extends Component {
     },
   ]
 
+  state = {
+    introduce: false,
+    WorkExperience: false,
+    skill: false, education: false,
+  }
+
+  componentDidMount() {
+    if(this.mainFef){
+
+      const mainCurrent =  this.mainFef.current
+      mainCurrent.addEventListener('scroll', (e) => {
+        let scrollLocation = mainCurrent.scrollTop
+        let windowHeight = mainCurrent.clientHeight;
+        let fullHeight = mainCurrent.scrollHeight;
+        
+        if(mainCurrent.scrollTop > 70){
+          if(!this.state.introduce){
+            this.setState({ introduce: true})
+          }
+        }
+        
+        if(mainCurrent.scrollTop > 300){
+          if(!this.state.WorkExperience){
+            this.setState({ WorkExperience: true})
+          }
+        }
+
+        if(mainCurrent.scrollTop > 1000){
+          if(!this.state.skill){
+            this.setState({ skill: true})
+          }
+        }
+
+        if(mainCurrent.scrollTop >1300){
+          if(!this.state.education){
+            this.setState({ education: true})
+          }
+        }
+
+        if(scrollLocation + windowHeight >= fullHeight){
+          console.log('끝')
+        }
+      })
+    }
+  }
+
+
   render() {
+    const {introduce, WorkExperience, skill, education} = this.state
     return (
       <Fragment>
-        <div className="myDocument">
+        <div className="myDocument" ref={this.mainFef}>
           <br />
           <br />
 
@@ -137,9 +191,11 @@ export default class Container extends Component {
           </Grid>
 
           <Grid columns="equal">
-            <Grid.Row>
-              <Grid.Column>
-                <Header as="h1">
+            <Grid.Row >
+             <Grid.Column className="fadein">
+             {introduce?
+              <>
+                <Header as="h1"  >
                   #<Typography
                     random
                     text="Introduce"
@@ -160,10 +216,14 @@ export default class Container extends Component {
                     또한, 큰 임팩트는 혼자가 아닌 함께 만들 수 있다고 생각하기에 다양한 직무의 팀과 적극적으로 커뮤니케이션하며 협업해왔습니다.<br />
                   </p>
                 </div>
+              </>: <div style={{height:'1000px'}}/>}
               </Grid.Column>
             </Grid.Row>
+
             <Grid.Row>
               <Grid.Column>
+                {WorkExperience?
+                  <>
                 <Header as="h1">
                   #<Typography
                     random
@@ -187,7 +247,7 @@ export default class Container extends Component {
                               <Grid.Column>
                                 <List.Content>
                                   <div>
-                                    {e.skillList ? e.skillList.map((skill, j) => <Button content={skill} size="mini" key={j} />) : null}
+                                    {e.skillList ? e.skillList.map((list, j) => <Button content={list} size="mini" key={j} />) : null}
                                   </div>
                                   <div>
                                     {e.Content}
@@ -202,12 +262,14 @@ export default class Container extends Component {
                     </List.List>
                   </List.Item>
                 </List>
+                </>: <div style={{height:'1000px'}}/>}
 
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>
-                <Header as="h1">
+{     skill?           <>
+<Header as="h1">
                   #
                   <Typography
                     random
@@ -227,14 +289,15 @@ export default class Container extends Component {
                     'SCSS',
                     'Spring Boot',
                     'Java',
-                  ].map((skill, j) => <Button content={skill} size="huge" key={j} className="hover" />) }
-                </div>
+                  ].map((list, j) => <Button content={list} size="huge" key={j} className="hover" />) }
+                </div></>: <div style={{height:'1000px'}}/>}
+
 
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>
-                <Header as="h1">
+                {education?<><Header as="h1">
                   #
                   <Typography
                     random
@@ -243,7 +306,7 @@ export default class Container extends Component {
                   />
                 </Header>
 
-                <div><p>조선대학교 공예디자인과 </p></div>
+                <div><p>조선대학교 공예디자인과 </p></div></>: <div style={{height:'1000px'}}/>}
 
               </Grid.Column>
             </Grid.Row>

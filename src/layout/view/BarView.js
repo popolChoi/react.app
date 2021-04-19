@@ -1,26 +1,19 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from 'semantic-ui-react';
 import Typography from 'common/typography';
 
-class BarView extends Component {
-  onClick(e) {
-    // console.log(this.ref.children)
-
-    const aa = [...this.ref.children];
-    aa.forEach((e2) => {
+const BarView = (props) => {
+  const ref = useRef();
+  const onClick = (e) => {
+    const aa = [...ref.current.children];
+        aa.forEach((e2) => {
       console.log();
       e2.firstChild.classList.remove('click');
     });
     e.target.classList.add('click');
   }
-
-  //   onChange(e, v) {
-  //     console.log(e, v.value);
-  //   }
-
-  render() {
-    const { contentLists, layBar } = this.props;
+    const { contentLists, layBar } = props;
     return (
       <Fragment>
         <div className="lay-bar" style={layBar}>
@@ -36,10 +29,10 @@ class BarView extends Component {
                 <br />
                 <br />
                 <br /> */}
-            <ul ref={(e) => this.ref = e}>
+            <ul ref={ref}>
               { contentLists.map((v, i) => (
                 <Link key={i} to={`${v.path}`}>
-                  <li onClick={this.onClick.bind(this)}>
+                  <li onClick={(e)=>onClick(e, ref)}>
                     <Typography
                       random
                       text={v.label}
@@ -53,6 +46,6 @@ class BarView extends Component {
         </div>
       </Fragment>
     );
-  }
+  
 }
 export default BarView;
