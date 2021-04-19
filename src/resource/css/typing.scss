@@ -37,3 +37,20 @@
     }
     
 }
+
+.typography{
+  // color: rgb(241, 66, 66) !important;
+  // &:first-letter { color: rgb(114, 89, 89) !important; }
+  font-size: larger ;  
+  & span{ font-size: larger ;  }
+
+  // &:hover{
+     
+    
+  //   // background: linear-gradient(to right, #f00 10%, #00f 15%, #0f0 35%, #f0f 50%, #0ff 60%, #ff5800 75%, #f05 87%, #ff7fd3 95%, #326d18 100%);
+
+  //   // // -webkit-background-clip: text;
+  //   // -webkit-text-fill-color: transparent;
+  // }
+
+}

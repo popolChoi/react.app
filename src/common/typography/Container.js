@@ -50,9 +50,8 @@ export default class Container extends PureComponent {
       if (random) {
         const node = this.refText.current.parentNode;
         node.addEventListener('mouseover', (e) => this.onMouseover(e));
-        node.addEventListener('mouseout', (e) => {  this.setState({ text: this.props.text }, () => clearInterval(this.timeout));});
+        node.addEventListener('mouseout', (e) => { this.setState({ text: this.props.text }, () => clearInterval(this.timeout)); });
       }
-  
     }
   }
 
@@ -63,8 +62,11 @@ export default class Container extends PureComponent {
     }, 200);
 
     this.timeout = setInterval(
-      () => this.setState((prevState) => ({ text: Math.random().toString(36).substr(2, 11) })),
-      20,
+      () => this.setState((prevState) => ({
+        text: Math.random().toString(36).substr(2, 11).split('')
+          .map((e, i) => <span key={i}>{e}</span>),
+      })),
+      50,
     );
   }
 
@@ -74,13 +76,15 @@ export default class Container extends PureComponent {
 
     return (
       <Fragment>
-        {text}
-        {line !== false ? (
-          <font
-            className="typing-line"
-            ref={this.refText}
-          />
-        ) : <font ref={this.refText} />}
+        <span className="typography">
+          {text}
+          {line !== false ? (
+            <font
+              className="typing-line"
+              ref={this.refText}
+            />
+          ) : <font ref={this.refText} />}
+        </span>
 
       </Fragment>
     );
