@@ -2,7 +2,12 @@ import React, { PureComponent } from 'react';
 import {
   BrowserRouter, Route, Switch, Link, Redirect,
 } from 'react-router-dom';
-import { Comments, Typing, MyDocument } from './works';
+import {
+  Comments,
+  Typing,
+  MyDocument,
+  CoinMarket,
+} from './works';
 import logo from './resource/img/logo.svg';
 import { Layout } from './layout';
 
@@ -15,7 +20,7 @@ class Routes extends PureComponent {
     { path: '/myDocument', label: 'myDocument', component: (e) => <header className="App-header fadein"><MyDocument {...e} /></header> },
     { path: '/typing', label: '타이핑 테스트', component: (e) => <header className="App-header fadein"><Typing {...e} /></header> },
     { path: '/comments', label: '댓글창 폼', component: (e) => <header className="App-header fadein"><Comments {...e} /></header> },
-    // {path: "/coinmarket", label: '가상화페시세', component: (e)=><header className="App-header"><CoinMarket {...e}/></header>  },
+    { path: '/coinmarket', label: '가상화페시세', component: (e) => <header className="App-header"><CoinMarket {...e} /></header> },
 
     // ...new Array(100).fill(undefined).map((v,i) => (
     //   {path: `/test${i+1}`, label: `test${i+1}`, component: ()=> <header className="App-header">{`test${i+1}`}</header> }

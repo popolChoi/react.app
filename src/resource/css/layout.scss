@@ -12,15 +12,15 @@
   /* background: linear-gradient(to top, #313131, #ffffff),
     url("../../resource/img/다운로드.jpg")
     ; */
+  // filter: grayscale(100%);
+
   background-blend-mode: multiply;
-  filter: grayscale(100%);
   float: right;
   height: 100vh;
   width: 300px;
   transition: width 0.25s linear;
   padding: 7px 0 7px 20px;
   overflow: hidden;
-
   & > div{
     height: 100%;
     width: 100%;
@@ -42,6 +42,7 @@
       padding: 3px 5px 3px 5px;
       font-size: 20px;
       // height: 30px;
+      color: gray;
 
       &:hover {
         background-color: black;

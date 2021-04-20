@@ -35,7 +35,6 @@ class LayoutContainar extends Component {
   render() {
     const { cayoutContent, contentLists } = this.props;
     const { layContainer, layBar, layBarBut } = this.state;
-    console.log(cayoutContent);
     return (
       <Fragment>
         {/* <Dimmer inverted><Loader active/></Dimmer> */}

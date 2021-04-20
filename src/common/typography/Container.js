@@ -1,7 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 
 export default class Container extends PureComponent {
-  refText = React.createRef();
+  // refText = React.createRef();
+  _text2 = ''
 
   constructor(props) {
     super(props);
@@ -10,80 +11,110 @@ export default class Container extends PureComponent {
     this.state = {
       text: '',
       typingSpeed: 50,
+      _mouseEnter: false,
     };
   }
 
   componentDidMount() {
-    this.onTimeout();
+    //
+    setTimeout(() => {
+      this.onTimeout();
+    }, 300);
   }
 
   componentWillUnmount() {
     clearInterval(this.timeout);
-    // const { random } = this.props;
-    // if (random) {
-    //   const node = this.refText.current.parentNode;
-    //   node.removeEventListener('mouseover');
-    //   node.removeEventListener('mouseout');
-    // }
+    this.timeout = undefined;
   }
 
   onTimeout() {
     const { typingSpeed } = this.state;
-    setTimeout(() => {
-      this.timeout = setInterval(() => {
-        this.onTyping();
-      }, typingSpeed);
-    }, 500);
+
+    this.timeout = setInterval(() => {
+      this.onTyping();
+    }, typingSpeed);
   }
 
   onTyping() {
     const a = this._text;
-    const b = this.state.text;
+    const b = this._text2;
     const set = a[b.length];
-    // console.log(this._text.length - b.length, a[this._text.length - b.length]);
 
-    this.setState((prevState) => ({ text: prevState.text + set }));
-    if (this._text === this.state.text) {
+    this.setState((prevState) => {
+      this._text2 += set;
+      const string = 'LOVE♥★';
+      return {
+        text: (
+
+          this._text2.split('').map((e, i) => {
+            if (i < this._text2.length - 4) {
+              return e;
+            }
+
+            return (
+              <span key={i}>
+                {
+                  // Math.random().toString(36).substr(2, 1)
+                  string.split('')[Math.floor(Math.random() * string.length)]
+                }
+              </span>
+            );
+          })
+
+        ),
+      };
+    });
+    if (this._text === this._text2) {
       clearInterval(this.timeout);
-
-      const { random } = this.props;
-      if (random) {
-        const node = this.refText.current.parentNode;
-        node.addEventListener('mouseover', (e) => this.onMouseover(e));
-        node.addEventListener('mouseout', (e) => { this.setState({ text: this.props.text }, () => clearInterval(this.timeout)); });
-      }
+      this.timeout = undefined;
+      this.setState({ _mouseEnter: true, text: this._text });
     }
   }
 
   onMouseover() {
-    const { typingSpeed } = this.state;
-    setTimeout(() => {
-      this.setState({ text: this.props.text }, () => clearInterval(this.timeout));
-    }, 200);
+    // const { typingSpeed } = this.state;
+    // const text = this.props.text.split('');
+    // this.timeout = setInterval(
+    //   () => this.setState((prevState) => ({
+    //     text: (<span>{text.map((e, i) => <span key={i}>{this.props.text[Math.floor(Math.random() * this.props.text.length)]}</span>)} </span>),
+    //   })),
+    //   typingSpeed ?? 50,
+    // );
 
-    this.timeout = setInterval(
-      () => this.setState((prevState) => ({
-        text: Math.random().toString(36).substr(2, 11).split('')
-          .map((e, i) => <span key={i}>{e}</span>),
-      })),
-      50,
-    );
+    // setTimeout(() => {
+    //   this.setState({ text: this.props.text }, () => clearInterval(this.timeout));
+    // }, 400);
+
+    this._text2 = '';
+    this.setState({ _mouseEnter: false }, () => this.onTimeout());
   }
 
   render() {
-    const { text } = this.state;
+    const { text = '', _mouseEnter, text2 } = this.state;
     const { line } = this.props;
 
     return (
       <Fragment>
-        <span className="typography">
+        <span
+          onMouseEnter={_mouseEnter ? (e) => { this.onMouseover(e); } : null}
+          // onMouseLeave={_mouseEnter ? (e) => {
+          //   console.log('onMouseLeave');
+          //   this.setState(
+          //     { text: this.props.text },
+          //     () => {
+          //       clearInterval(this.timeout);
+          //       this.timeout = undefined;
+          //     },
+          //   );
+          // } : null}
+          className="typography"
+          // ref={this.refText}
+        >
           {text}
+
           {line !== false ? (
-            <font
-              className="typing-line"
-              ref={this.refText}
-            />
-          ) : <font ref={this.refText} />}
+            <font className="typing-line" />
+          ) : <font />}
         </span>
 
       </Fragment>
