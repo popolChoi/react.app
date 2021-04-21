@@ -17,13 +17,13 @@ class Routes extends PureComponent {
 
     { path: '/Home', label: 'Home', component: Home },
 
-    { path: '/myDocument', label: 'myDocument', component: (e) => <header className="App-header fadein"><MyDocument {...e} /></header> },
-    { path: '/typing', label: '타이핑 테스트', component: (e) => <header className="App-header fadein"><Typing {...e} /></header> },
-    { path: '/comments', label: '댓글창 폼', component: (e) => <header className="App-header fadein"><Comments {...e} /></header> },
-    { path: '/coinmarket', label: '가상화페시세', component: (e) => <header className="App-header"><CoinMarket {...e} /></header> },
+    { path: '/myDocument', label: 'myDocument', component: (e) => <div className="App-header fadein"><MyDocument {...e} /></div> },
+    { path: '/typing', label: '타이핑 테스트', component: (e) => <div className="App-header fadein"><Typing {...e} /></div> },
+    { path: '/comments', label: '댓글창 폼', component: (e) => <div className="App-header fadein"><Comments {...e} /></div> },
+    { path: '/coinmarket', label: '가상화페시세', component: (e) => <div className=" fadein"><CoinMarket {...e} /></div> },
 
     // ...new Array(100).fill(undefined).map((v,i) => (
-    //   {path: `/test${i+1}`, label: `test${i+1}`, component: ()=> <header className="App-header">{`test${i+1}`}</header> }
+    //   {path: `/test${i+1}`, label: `test${i+1}`, component: ()=> <div className="App-header">{`test${i+1}`}</div> }
     // ))
   ]
 
@@ -58,7 +58,7 @@ function Home(a) {
   console.log(a);
   return (
     <>
-      <header className="App-header fadein"><img src={logo} className="App-logo" alt="logo" /></header>
+      <div className="App-header fadein"><img src={logo} className="App-logo" alt="logo" /></div>
 
       {/* <p> Edit <code>src/App.js</code> and save to reload.</p> */}
       {/* <a
@@ -78,7 +78,7 @@ function error404({ location = {} }, l) {
   if (!error) {
     return (
       <>
-        {location.pathname !== '/' ? <header className="App-header">404</header> : Home}
+        {location.pathname !== '/' ? <div className="App-header">404</div> : Home}
       </>
     );
   }
